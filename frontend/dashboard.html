@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-2xl mx-auto p-8 bg-white dark:bg-gray-800 shadow-2xl rounded-2xl text-center">
+        <h1 id="welcomeMessage" class="text-4xl font-bold text-gray-800 dark:text-white mb-4">
+            Cargando...
+        </h1>
+        <p id="userInfo" class="text-lg text-gray-600 dark:text-gray-400 mb-8">
+            Tu información aparecerá aquí.
+        </p>
+        <button id="logoutButton" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105">
+            Cerrar Sesión
+        </button>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000';
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const userInfo = document.getElementById('userInfo');
+        const logoutButton = document.getElementById('logoutButton');
+
+        // Al cargar la página, verificamos si el usuario está autenticado
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('token');
+
+            if (!token) {
+                // Si no hay token, lo redirigimos a la página de inicio
+                window.location.href = './index.html';
+                return;
+            }
+
+            // Si hay token, pedimos los datos del perfil al servidor
+            try {
+                const response = await fetch(`${API_URL}/api/profile`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    const user = await response.json();
+                    welcomeMessage.textContent = `¡Hola, ${user.nombre}!`;
+                    userInfo.textContent = `Tu correo electrónico registrado es: ${user.email}`;
+                } else {
+                    // Si el token es inválido o expiró, lo borramos y redirigimos
+                    localStorage.removeItem('token');
+                    window.location.href = './index.html';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                welcomeMessage.textContent = 'Error al cargar los datos.';
+            }
+        });
+
+        // Lógica para cerrar sesión
+        logoutButton.addEventListener('click', () => {
+            localStorage.removeItem('token'); // Borramos el token
+            window.location.href = './index.html'; // Redirigimos a la página de inicio
+        });
+
+    </script>
+</body>
+</html>

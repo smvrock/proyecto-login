@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión / Registro</title>
+    <!-- Tailwind CSS para diseño adaptable -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Iconos de Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        /* Usar la fuente Inter por defecto */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Transición suave para los formularios */
+        .form-container {
+            transition: all 0.3s ease-in-out;
+        }
+        /* Contenedor para mensajes de estado */
+        .message-box {
+            display: none; /* Oculto por defecto */
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 500;
+        }
+        .message-box.success {
+            background-color: #d1fae5; /* green-100 */
+            color: #065f46; /* green-800 */
+        }
+        .message-box.error {
+            background-color: #fee2e2; /* red-100 */
+            color: #991b1b; /* red-800 */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-md mx-auto">
+        <h1 id="pageTitle" class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-8">
+            Mi Aplicación
+        </h1>
+        
+        <div class="bg-white dark:bg-gray-800 shadow-2xl rounded-2xl overflow-hidden">
+            
+            <!-- Contenedor del Formulario de Inicio de Sesión -->
+            <div id="loginFormContainer" class="form-container p-8">
+                <div id="loginMessage" class="message-box"></div>
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">Bienvenido de Nuevo</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-6">Inicia sesión para continuar.</p>
+                <form id="loginForm">
+                    <div class="mb-4">
+                        <label for="loginEmail" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Correo Electrónico</label>
+                        <div class="relative">
+                           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="ph ph-at text-gray-400"></i>
+                           </div>
+                           <input type="email" id="loginEmail" name="email" placeholder="tu@email.com" required class="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border-2 border-transparent rounded-lg focus:border-blue-500 focus:ring-0 outline-none transition-colors">
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="loginPassword" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Contraseña</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="ph ph-lock-key text-gray-400"></i>
+                           </div>
+                           <input type="password" id="loginPassword" name="password" placeholder="••••••••" required class="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border-2 border-transparent rounded-lg focus:border-blue-500 focus:ring-0 outline-none transition-colors">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-lg transition-transform transform hover:scale-105">
+                        Iniciar Sesión
+                    </button>
+                </form>
+                <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-6">
+                    ¿No tienes una cuenta? 
+                    <button id="showRegister" class="font-medium text-blue-600 hover:text-blue-500">Regístrate aquí</button>
+                </p>
+            </div>
+
+            <!-- Contenedor del Formulario de Registro (inicialmente oculto) -->
+            <div id="registerFormContainer" class="form-container p-8 hidden">
+                <div id="registerMessage" class="message-box"></div>
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">Crear una Cuenta</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-6">Completa tus datos para empezar.</p>
+                <form id="registerForm">
+                    <div class="mb-4">
+                        <label for="registerName" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Nombre Completo</label>
+                         <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="ph ph-user text-gray-400"></i>
+                           </div>
+                            <input type="text" id="registerName" name="name" placeholder="Tu Nombre" required class="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border-2 border-transparent rounded-lg focus:border-blue-500 focus:ring-0 outline-none transition-colors">
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="registerEmail" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Correo Electrónico</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="ph ph-at text-gray-400"></i>
+                           </div>
+                            <input type="email" id="registerEmail" name="email" placeholder="tu@email.com" required class="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border-2 border-transparent rounded-lg focus:border-blue-500 focus:ring-0 outline-none transition-colors">
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="registerPassword" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Contraseña</label>
+                         <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="ph ph-lock-key text-gray-400"></i>
+                           </div>
+                           <input type="password" id="registerPassword" name="password" placeholder="Crea una contraseña segura" required class="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border-2 border-transparent rounded-lg focus:border-blue-500 focus:ring-0 outline-none transition-colors">
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg text-lg transition-transform transform hover:scale-105">
+                        Crear Cuenta
+                    </button>
+                </form>
+                <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-6">
+                    ¿Ya tienes una cuenta? 
+                    <button id="showLogin" class="font-medium text-blue-600 hover:text-blue-500">Inicia sesión</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginContainer = document.getElementById('loginFormContainer');
+            const registerContainer = document.getElementById('registerFormContainer');
+            const showRegisterBtn = document.getElementById('showRegister');
+            const showLoginBtn = document.getElementById('showLogin');
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const loginMessage = document.getElementById('loginMessage');
+            const registerMessage = document.getElementById('registerMessage');
+
+            const API_URL = 'http://localhost:3000';
+
+            if (showRegisterBtn) {
+                showRegisterBtn.addEventListener('click', () => {
+                    loginContainer.classList.add('hidden');
+                    registerContainer.classList.remove('hidden');
+                });
+            }
+
+            if (showLoginBtn) {
+                showLoginBtn.addEventListener('click', () => {
+                    registerContainer.classList.add('hidden');
+                    loginContainer.classList.remove('hidden');
+                });
+            }
+            
+            function showMessage(element, message, isSuccess) {
+                if (element) {
+                    element.textContent = message;
+                    element.className = 'message-box';
+                    element.classList.add(isSuccess ? 'success' : 'error');
+                    element.style.display = 'block';
+                }
+            }
+
+            if (registerForm) {
+                registerForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById('registerName').value;
+                    const email = document.getElementById('registerEmail').value;
+                    const password = document.getElementById('registerPassword').value;
+                    
+                    try {
+                        const response = await fetch(`${API_URL}/register`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ name, email, password })
+                        });
+                        const data = await response.json();
+                        if (response.ok) {
+                            showMessage(registerMessage, data.message + ' Ahora puedes iniciar sesión.', true);
+                            registerForm.reset();
+                        } else {
+                            showMessage(registerMessage, data.message, false);
+                        }
+                    } catch (error) {
+                        showMessage(registerMessage, 'No se pudo conectar al servidor.', false);
+                    }
+                });
+            }
+
+            if (loginForm) {
+                loginForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById('loginEmail').value;
+                    const password = document.getElementById('loginPassword').value;
+
+                    try {
+                        const response = await fetch(`${API_URL}/login`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ email, password })
+                        });
+                        const data = await response.json();
+                        if (response.ok) {
+                            localStorage.setItem('token', data.token);
+                            window.location.href = './dashboard.html';
+                        } else {
+                            showMessage(loginMessage, data.message, false);
+                        }
+                    } catch (error) {
+                        showMessage(loginMessage, 'No se pudo conectar al servidor.', false);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
