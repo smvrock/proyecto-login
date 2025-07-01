@@ -13,63 +13,48 @@
     <!-- Iconos de Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
-        /* Usar la fuente Inter por defecto */
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        /* Transición suave para los formularios */
-        .form-container {
-            transition: all 0.3s ease-in-out;
-        }
-        /* Contenedor para mensajes de estado */
+        body { font-family: 'Inter', sans-serif; }
+        .form-container { transition: all 0.3s ease-in-out; }
         .message-box {
-            display: none; /* Oculto por defecto */
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            font-weight: 500;
+            display: none; padding: 1rem; margin-bottom: 1rem;
+            border-radius: 0.5rem; text-align: center; font-weight: 500;
         }
-        .message-box.success {
-            background-color: #d1fae5; /* green-100 */
-            color: #065f46; /* green-800 */
-        }
-        .message-box.error {
-            background-color: #fee2e2; /* red-100 */
-            color: #991b1b; /* red-800 */
-        }
+        .message-box.success { background-color: #d1fae5; color: #065f46; }
+        .message-box.error { background-color: #fee2e2; color: #991b1b; }
     </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 flex items-center justify-center min-h-screen p-4">
 
     <div class="w-full max-w-md mx-auto">
-        <h1 id="pageTitle" class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-8">
+        <h1 id="pageTitle" class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-4">
             Mi Aplicación
         </h1>
+        
+        <!-- LUGAR PARA LA DESCRIPCIÓN -->
+        <p class="text-center text-gray-600 dark:text-gray-400 mb-8 max-w-sm mx-auto">
+            Aquí puedes escribir una breve y atractiva descripción sobre el propósito de tu página o aplicación.
+        </p>
         
         <div class="bg-white dark:bg-gray-800 shadow-2xl rounded-2xl overflow-hidden">
             
             <!-- Contenedor del Formulario de Inicio de Sesión -->
             <div id="loginFormContainer" class="form-container p-8">
                 <div id="loginMessage" class="message-box"></div>
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">Bienvenido de Nuevo</h2>
-                <p class="text-gray-600 dark:text-gray-400 mb-6">Inicia sesión para continuar.</p>
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">Bienvenido</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-6">Inicia sesión para una experiencia completa.</p>
                 <form id="loginForm">
+                    <!-- Campos de Email y Contraseña (sin cambios) -->
                     <div class="mb-4">
                         <label for="loginEmail" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Correo Electrónico</label>
                         <div class="relative">
-                           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="ph ph-at text-gray-400"></i>
-                           </div>
+                           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><i class="ph ph-at text-gray-400"></i></div>
                            <input type="email" id="loginEmail" name="email" placeholder="tu@email.com" required class="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border-2 border-transparent rounded-lg focus:border-blue-500 focus:ring-0 outline-none transition-colors">
                         </div>
                     </div>
                     <div class="mb-6">
                         <label for="loginPassword" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Contraseña</label>
                         <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="ph ph-lock-key text-gray-400"></i>
-                           </div>
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><i class="ph ph-lock-key text-gray-400"></i></div>
                            <input type="password" id="loginPassword" name="password" placeholder="••••••••" required class="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border-2 border-transparent rounded-lg focus:border-blue-500 focus:ring-0 outline-none transition-colors">
                         </div>
                     </div>
@@ -77,42 +62,50 @@
                         Iniciar Sesión
                     </button>
                 </form>
+
+                <!-- Divisor -->
+                <div class="my-6 flex items-center">
+                    <div class="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+                    <span class="flex-shrink mx-4 text-gray-400 text-sm">O</span>
+                    <div class="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+                </div>
+
+                <!-- NAVEGACIÓN SIN LOGUEARSE -->
+                <a href="home.html" class="w-full block text-center bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-bold py-3 px-4 rounded-lg text-lg transition-colors">
+                    Navegar como invitado
+                </a>
+
                 <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-6">
                     ¿No tienes una cuenta? 
                     <button id="showRegister" class="font-medium text-blue-600 hover:text-blue-500">Regístrate aquí</button>
                 </p>
             </div>
 
-            <!-- Contenedor del Formulario de Registro (inicialmente oculto) -->
+            <!-- Contenedor del Formulario de Registro (sin cambios) -->
             <div id="registerFormContainer" class="form-container p-8 hidden">
                 <div id="registerMessage" class="message-box"></div>
                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">Crear una Cuenta</h2>
                 <p class="text-gray-600 dark:text-gray-400 mb-6">Completa tus datos para empezar.</p>
                 <form id="registerForm">
+                    <!-- Campos de Nombre, Email y Contraseña (sin cambios) -->
                     <div class="mb-4">
                         <label for="registerName" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Nombre Completo</label>
                          <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="ph ph-user text-gray-400"></i>
-                           </div>
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><i class="ph ph-user text-gray-400"></i></div>
                             <input type="text" id="registerName" name="name" placeholder="Tu Nombre" required class="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border-2 border-transparent rounded-lg focus:border-blue-500 focus:ring-0 outline-none transition-colors">
                         </div>
                     </div>
                     <div class="mb-4">
                         <label for="registerEmail" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Correo Electrónico</label>
                         <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="ph ph-at text-gray-400"></i>
-                           </div>
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><i class="ph ph-at text-gray-400"></i></div>
                             <input type="email" id="registerEmail" name="email" placeholder="tu@email.com" required class="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border-2 border-transparent rounded-lg focus:border-blue-500 focus:ring-0 outline-none transition-colors">
                         </div>
                     </div>
                     <div class="mb-6">
                         <label for="registerPassword" class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Contraseña</label>
                          <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="ph ph-lock-key text-gray-400"></i>
-                           </div>
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><i class="ph ph-lock-key text-gray-400"></i></div>
                            <input type="password" id="registerPassword" name="password" placeholder="Crea una contraseña segura" required class="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-700 border-2 border-transparent rounded-lg focus:border-blue-500 focus:ring-0 outline-none transition-colors">
                         </div>
                     </div>
@@ -129,6 +122,7 @@
     </div>
 
     <script>
+        // El script JavaScript no necesita cambios para esta modificación visual.
         document.addEventListener('DOMContentLoaded', () => {
             const loginContainer = document.getElementById('loginFormContainer');
             const registerContainer = document.getElementById('registerFormContainer');

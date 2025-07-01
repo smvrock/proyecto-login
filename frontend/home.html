@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal - Mi Aplicación</title>
+    <!-- Tailwind CSS para diseño adaptable -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Iconos de Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+
+    <!-- Encabezado -->
+    <header class="bg-white dark:bg-gray-800 shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-blue-600 dark:text-blue-500">
+                Mi Aplicación
+            </div>
+            <div id="nav-buttons">
+                <!-- Los botones se insertarán aquí dinámicamente -->
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main>
+        <!-- Sección de Bienvenida (Hero) -->
+        <section class="bg-white dark:bg-gray-800 text-center py-20 px-6">
+            <h1 class="text-5xl font-extrabold text-gray-900 dark:text-white mb-4">Bienvenido a Nuestra Plataforma</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
+                Descubre un nuevo mundo de posibilidades. Organiza, crea y comparte como nunca antes.
+            </p>
+            <a href="#features" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105 inline-block">
+                Conoce más
+            </a>
+        </section>
+
+        <!-- Sección de Características -->
+        <section id="features" class="py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">Características Principales</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Característica 1 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 dark:bg-blue-900 mx-auto mb-6">
+                            <i class="ph ph-user-circle-plus text-4xl text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">Gestión de Usuarios</h3>
+                        <p class="text-gray-600 dark:text-gray-400">
+                            Sistema de registro e inicio de sesión seguro para proteger tu información personal y tus datos.
+                        </p>
+                    </div>
+                    <!-- Característica 2 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-green-100 dark:bg-green-900 mx-auto mb-6">
+                            <i class="ph ph-layout text-4xl text-green-600 dark:text-green-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">Dashboard Personal</h3>
+                        <p class="text-gray-600 dark:text-gray-400">
+                            Una vez que inicias sesión, accedes a un panel de control personal donde puedes gestionar tu contenido.
+                        </p>
+                    </div>
+                    <!-- Característica 3 -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg text-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-purple-100 dark:bg-purple-900 mx-auto mb-6">
+                            <i class="ph ph-plugs-connected text-4xl text-purple-600 dark:text-purple-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">Fácil de Extender</h3>
+                        <p class="text-gray-600 dark:text-gray-400">
+                            La arquitectura del proyecto está diseñada para que sea fácil añadir nuevas y emocionantes funcionalidades.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Llamada a la Acción (CTA) -->
+        <section class="bg-blue-600">
+            <div class="container mx-auto px-6 py-16 text-center">
+                <h2 class="text-3xl font-bold text-white mb-4">¿Listo para Empezar?</h2>
+                <p class="text-blue-200 text-lg mb-8">
+                    Crea una cuenta gratuita y obtén acceso a todas las herramientas que necesitas.
+                </p>
+                <a href="index.html" class="bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105 inline-block">
+                    Regístrate Ahora
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de Página -->
+    <footer class="bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-6 py-4 text-center text-gray-600 dark:text-gray-400">
+            &copy; 2025 Mi Aplicación. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navButtonsContainer = document.getElementById('nav-buttons');
+            const token = localStorage.getItem('token');
+
+            if (token) {
+                // Si el usuario está logueado, muestra el botón para ir al dashboard
+                navButtonsContainer.innerHTML = `
+                    <a href="dashboard.html" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+                        Ir al Dashboard
+                    </a>
+                `;
+            } else {
+                // Si no está logueado, muestra el botón para iniciar sesión
+                navButtonsContainer.innerHTML = `
+                    <a href="index.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+                        Iniciar Sesión / Registrarse
+                    </a>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
